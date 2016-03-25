@@ -7,7 +7,7 @@ class PlayerEntity : public sf::Drawable
 public:
     PlayerEntity();
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    void tick();
+    void tick(sf::RenderWindow &window);
 private:
     sf::Vector2f _playerPos;
     sf::CircleShape _player;

@@ -14,12 +14,16 @@ CONFIG   -= app_bundle
 CONFIG += c++14
 
 TEMPLATE = app
-CONFIG(debug, debug|release): LIBS += -lsfml-audio-d -lsfml-graphics-d -lsfml-network-d -lsfml-window-d -lsfml-system-d
+CONFIG(debug, debug|release): LIBS += -lsfml-audio -lsfml-graphics -lsfml-network -lsfml-window -lsfml-system
 
 SOURCES += main.cpp \
     playerentity.cpp \
-    gamestage.cpp
+    gamestage.cpp \
+    enemyspawner.cpp \
+    enemy.cpp
 
 HEADERS += \
     playerentity.h \
-    gamestage.h
+    gamestage.h \
+    enemyspawner.h \
+    enemy.h

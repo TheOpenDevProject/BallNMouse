@@ -9,6 +9,7 @@ public:
     void startGame() const;
 private:
     std::unique_ptr<sf::RenderWindow> gameWindow;
+    sf::ContextSettings renderWindowSettings;
 };
 
 #endif // GAMESTAGE_H
