@@ -8,6 +8,8 @@ public:
     EnemySpawner();
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     void tick();
+    void createEnemy();
+    void destoryEnemy();
 
 private:
     std::vector<std::unique_ptr<Enemy>> _enemies;
