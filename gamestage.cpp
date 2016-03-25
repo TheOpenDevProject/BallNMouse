@@ -1,6 +1,7 @@
 #include "gamestage.h"
 #include "playerentity.h"
 #include "enemyspawner.h"
+#include "animatedbackground.h"
 GameStage::GameStage(): gameWindow(new sf::RenderWindow(sf::VideoMode(800,800),"WTF!",sf::Style::Default,renderWindowSettings))
 {
 
@@ -9,6 +10,8 @@ GameStage::GameStage(): gameWindow(new sf::RenderWindow(sf::VideoMode(800,800),"
 }
 
 void GameStage::startGame() const{
+    AnimatedBackground bg_background;
+
     PlayerEntity player;
     EnemySpawner spawner;
     EnemySpawner spawner_2;
@@ -18,9 +21,18 @@ void GameStage::startGame() const{
     sf::Clock playerPulseTimer;
     //Player Cant Enter This Zone
     sf::RectangleShape noEntryZone;
+    sf::RectangleShape noEntryZone_innerShape;
+    noEntryZone_innerShape.setSize(sf::Vector2f(150,150));
+    noEntryZone_innerShape.setOutlineColor(sf::Color::Blue);
+    noEntryZone_innerShape.setFillColor(sf::Color::Black);
+    noEntryZone_innerShape.setOutlineThickness(3);
+    noEntryZone_innerShape.setPosition(400,400);
+    noEntryZone_innerShape.setOrigin(75,75);
+
+
     noEntryZone.setSize(sf::Vector2f(300,300));
     noEntryZone.setOutlineColor(sf::Color::Green);
-    noEntryZone.setOutlineThickness(3);
+    noEntryZone.setOutlineThickness(3);this->gameWindow->draw(noEntryZone);
     noEntryZone.setPosition(400,400);
     noEntryZone.setOrigin(150,150);
     while(this->gameWindow->isOpen()){
@@ -50,6 +62,8 @@ void GameStage::startGame() const{
             spawner.tick();
             spawner_2.tick();
             noEntryZone.rotate(10);
+            noEntryZone_innerShape.rotate(-10);
+            bg_background.tick();
             updateStage.restart();
         }
 
@@ -67,10 +81,12 @@ void GameStage::startGame() const{
         //Draw the game
         this->gameWindow->clear();
         player.tick(*this->gameWindow.get());
-        this->gameWindow->draw(noEntryZone);
+        this->gameWindow->draw(bg_background);
         this->gameWindow->draw(player);
         this->gameWindow->draw(spawner);
          this->gameWindow->draw(spawner_2);
+        this->gameWindow->draw(noEntryZone);
+        this->gameWindow->draw(noEntryZone_innerShape);
         this->gameWindow->display();
     }
 }

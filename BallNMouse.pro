@@ -20,10 +20,12 @@ SOURCES += main.cpp \
     playerentity.cpp \
     gamestage.cpp \
     enemyspawner.cpp \
-    enemy.cpp
+    enemy.cpp \
+    animatedbackground.cpp
 
 HEADERS += \
     playerentity.h \
     gamestage.h \
     enemyspawner.h \
-    enemy.h
+    enemy.h \
+    animatedbackground.h
