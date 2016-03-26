@@ -36,27 +36,18 @@ void GameStage::startGame() const{
     noEntryZone.setPosition(400,400);
     noEntryZone.setOrigin(150,150);
     while(this->gameWindow->isOpen()){
-        sf::Event event;
-        while(this->gameWindow->pollEvent(event)){
-            if(event.type == sf::Event::Closed){
-                return;
-            }
-        }
-
+        this->handleEvents();
         //New Enemy Spawn Rate
-
         if(spawnRate.getElapsedTime().asMilliseconds() >= 1000){
             spawner.createEnemy();
-
             spawnRate.restart();
-
         }
 
         if(spawnRate.getElapsedTime().asMilliseconds() >= 2000){
             spawner_2.createEnemy();
             spawnRate_2.restart();
-
         }
+
         //Update frame
         if(updateStage.getElapsedTime().asMilliseconds() >= 10){
             spawner.tick();
@@ -73,8 +64,7 @@ void GameStage::startGame() const{
             if(player.shouldGrow()){
                 player.growMe();
             }
-
-            playerPulseTimer.restart();
+                playerPulseTimer.restart();
         }
 
 
@@ -84,9 +74,19 @@ void GameStage::startGame() const{
         this->gameWindow->draw(bg_background);
         this->gameWindow->draw(player);
         this->gameWindow->draw(spawner);
-         this->gameWindow->draw(spawner_2);
+        this->gameWindow->draw(spawner_2);
         this->gameWindow->draw(noEntryZone);
         this->gameWindow->draw(noEntryZone_innerShape);
         this->gameWindow->display();
+    }
+}
+
+void GameStage::handleEvents() const
+{
+    sf::Event event;
+    while(this->gameWindow->pollEvent(event)){
+        if(event.type == sf::Event::Closed){
+            this->gameWindow->close();
+        }
     }
 }

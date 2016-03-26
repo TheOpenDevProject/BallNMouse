@@ -9,6 +9,7 @@ public:
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     void spawn(int x, int y);
     void tick();
+
     sf::Vector2f getPos() const;
 protected:
     sf::ConvexShape _enemyEntity;

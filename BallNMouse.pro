@@ -21,11 +21,13 @@ SOURCES += main.cpp \
     gamestage.cpp \
     enemyspawner.cpp \
     enemy.cpp \
-    animatedbackground.cpp
+    animatedbackground.cpp \
+    collisionengine.cpp
 
 HEADERS += \
     playerentity.h \
     gamestage.h \
     enemyspawner.h \
     enemy.h \
-    animatedbackground.h
+    animatedbackground.h \
+    collisionengine.h
